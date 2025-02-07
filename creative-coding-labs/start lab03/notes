@@ -1,3 +1,0 @@
-let data;  //Holds the data from the CSV file.
-let cleanedData = [];  //
-let charts = [];  // 
