@@ -1,0 +1,46 @@
+// 1. Declare a variable
+let age;
+
+// 2. Define the Date of Birth
+const dob = "11/08/2005";  // const declare variables that cannot be reassigned
+
+// 3. Extract the Year of Birth as a string
+let yob = dob.substring(6,10);
+
+// 4. Convert Year of Birth to a Number (string to number)
+let yobNum = parseInt(yob);
+
+// 5. Calculate the Age based on the current year
+age = 2025 - parseInt(dob.substring(6,10));  
+
+
+// let age;
+// const dob = "11/08/2005";
+// age = 2025 - parseInt(dob.substring(6,10));
+
+// let age;
+// const dob = "11/08/2005";
+// let yob = dob.substring(6,10);
+// let yobNum = parseInt(yob);
+// age = 2025 - yob;
+
+
+// create an array of friends
+let friends = ["Giorgia","Mary","Matylda","Cian"];
+
+// loop through the array
+for(let num=0; num<friends.length; num++){
+    console.log(friends[num])
+};
+
+// modify array
+friends.splice(2,1, "Nichita")
+// starts at index 2 and then removes one item
+// what this does is replace the name found at index 2 (3rd name) with nichita
+
+
+// creates an object with 3 properties
+let myFriend = {name:"Giorgia", age:19, eirCode:"A90YY45"};
+
+
+
