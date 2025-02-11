@@ -1,5 +1,5 @@
 class BarChart{
-    constructor(_data,_xValue, _yValue, _chartHeight, _chartWidth,_barWidth, _margin, _axisTickenss,_axisTickTickenss,_chartPosX, _chartPosY){
+    constructor(_data,_xValue, _yValue, _chartHeight, _chartWidth,_barWidth, _margin, _axisThickness,_chartPosX, _chartPosY){
         this.data = _data;
         this.xValue = _xValue;
         this.yValue = _yValue;
@@ -7,8 +7,8 @@ class BarChart{
         this.chartWidth = _chartWidth;
         this.barWidth = _barWidth;
         this.margin = _margin;
-        this.axisTickenss = _axisTickenss;
-        this.axisTickTickenss = _axisTickTickenss;
+
+        this.axisThickness = _axisThickness;
         this.chartPosX = _chartPosX;
         this.chartPosY = _chartPosY;
 
@@ -16,11 +16,13 @@ class BarChart{
         this.scaler = this.chartHeight / (max(cleanedData.map(row => row[this.yValue])));
 
         this.axisColour = color(0);
-        this.axisTickColour = (0);
-        this.barColor =color(0);
-        this.axisTextColour = (200,0,0);  
+        this.axisTickColour = color(50);
+        this.barColor =color(255,255,200);
+        this.axisTextColour = color(200, 0, 0);
+
+
         this.numTicks=5;
-        this.tickLength = 3;
+        this.tickLength = 10;
     }
 
 
@@ -29,7 +31,7 @@ class BarChart{
         translate(this.chartPosX,this.chartPosY)
         noFill()
         stroke(this.axisColour)
-        strokeWeight(this.axisTickenss)
+        strokeWeight(this.axisThickness)
         line (0,0,0,-this.chartHeight) //vertical line
         line (0,0,this.chartWidth,0) //orizontal line
 
@@ -41,15 +43,15 @@ class BarChart{
                     fill(this.barColor)
                     rect (xPos, 0, this.barWidth, -this.data[i][this.yValue]*this.scaler)
 
-                    fill(this.axisTextColour)
-                    noStroke()
-                    textAlign(LEFT, CENTER)
-                    textSize (8)
-                    push()
-                    translate(xPos + (this.barWidth/2),20)
-                    rotate(45)
-                    text (this.data[i][this.xValue],0,0);
-                    pop()
+                    // fill(this.axisTextColour)
+                    // noStroke()
+                    // textAlign(LEFT, CENTER)
+                    // textSize (8)
+                    // push()
+                    // translate(xPos + (this.barWidth/2),20)
+                    // rotate(45)
+                    // text (this.data[i][this.xValue],0,0);
+                    // pop()
                 }
                 pop()
                 pop()
@@ -60,7 +62,7 @@ class BarChart{
                 translate(this.chartPosX,this.chartPosY)
                 noFill()
                 stroke(this.axisColour)
-                strokeWeight(this.axisTickenss)
+                strokeWeight(this.axisThickness)
                 line (0,0,0,-this.chartHeight) //vertical line
                 line (0,0,this.chartWidth,0) //orizontal line    
                 
@@ -79,6 +81,16 @@ class BarChart{
                     for(let i = 0; i<this.data.length; i++){
                         let xPos = (this.barWidth + this.gap) * i;
 
+                        fill(this.axisTextColour)
+                    noStroke()
+                    textAlign(LEFT, CENTER)
+                    textSize (8)
+                    push()
+                    translate(xPos + (this.barWidth/2),20)
+                    rotate(45)
+                    text (this.data[i][this.xValue],0,0);
+                    pop()
+
                     }
         pop()    
         pop()        
@@ -89,18 +101,17 @@ class BarChart{
                     translate(this.chartPosX,this.chartPosY)
                     noFill()
                     stroke(this.axisColour)
-                    strokeWeight(this.axisTickenss)
+                    strokeWeight(this.axisThickness)
                     
                     let tickIncrement = this.chartHeight/this.numTicks;
                     for(let i = 0; i<this.numTicks; i++){
-                        line(0,-tickIncrement*i - this.tickLenght,-tickIncrement*i)
+                        line(0, -tickIncrement * i, -this.tickLength, -tickIncrement * i);
                     }
                     
                 pop()
                     
                 }
-        
-
+                
 }
 
 
