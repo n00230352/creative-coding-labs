@@ -13,9 +13,19 @@ function setup(){
     noLoop();
     cleanData();
 
-    charts.push(new BarChart(cleanedData, 'Age_Group', 'Male', 400, 400, 10, 15, 10, 20, 450, 450))
-    //charts.push(new BarChart(cleanedData,"Age_Group","Female", 400, 400, 30, 15, 2, 470, 0))
-    //charts.push(new BarChart(cleanedData,"Age_Group","Total", 400, 400, 30, 15, 2, -200, 490))
+    charts.push(new BarChart({
+        data:cleanedData,
+        xValue:'Age_Group',
+        yValue:'Male',
+        //chartHeight: 400,
+        //chartWidth: 400,
+        //barWidth: 10,
+        //margin: 15,
+        //axisThickness: 10,
+        //chartPosX: 50,
+        //chartPosY: 450
+        }
+    ))
 }
 
 
