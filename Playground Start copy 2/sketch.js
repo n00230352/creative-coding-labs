@@ -70,7 +70,7 @@ function draw() {
         for(let j=0; j<yValues.length; j++){
             noStroke()
             fill(random(255))
-            rect(barWidth*j, 0, barWidth, -100)
+            rect(barWidth*j, 0, barWidth, -cleanedData[i][yValues[j]]*scaler)
         }
         pop()
     }
