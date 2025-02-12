@@ -10,18 +10,18 @@ class BarChart{
 
         this.axisThickness = obj.axisThickness ||1;
         this.chartPosX = obj.chartPosX ||50;
-        this.chartPosY = obj.chartPosY ||450;
+        this.chartPosY = obj.chartPosY ||350;
 
         this.gap = (this.chartWidth - (this.data.length * this.barWidth ) - (this.margin*2)) / (this.data.length - 1)
         this.scaler = this.chartHeight / (max(cleanedData.map(row => row[this.yValue])));
 
-        this.axisColour = color(0);
-        this.axisTickColour = color(50);
-        this.barColor =color(255,255,200);
-        this.axisTextColour = color(200, 0, 0);
+        this.axisColour = color(50);
+        this.axisTickColour = color(100);
+        this.barColor =color(30, 60, 120);
+        this.axisTextColour = color(0);
 
 
-        this.numTicks=6;
+        this.numTicks=5;
         this.tickLength = 10;
     }
 
@@ -81,10 +81,10 @@ class BarChart{
                     for(let i = 0; i<this.data.length; i++){
                         let xPos = (this.barWidth + this.gap) * i;
 
-                        fill(this.axisTextColour)
+                    fill(this.axisTextColour)
                     noStroke()
                     textAlign(LEFT, CENTER)
-                    textSize (8)
+                    textSize (12)
                     push()
                     translate(xPos + (this.barWidth/2),20)
                     rotate(45)

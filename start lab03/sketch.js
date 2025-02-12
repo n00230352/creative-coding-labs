@@ -8,7 +8,7 @@ function preload(){
 }
 
 function setup(){
-    createCanvas(1000, 1050);
+    createCanvas(500, 500);
     angleMode(DEGREES);
     noLoop();
     cleanData();
@@ -30,7 +30,7 @@ function setup(){
 
 
 function draw(){
-    background(255, 192, 203);
+    background(245, 235, 220);
 
     charts.forEach(chart => {
         chart.renderBars();
