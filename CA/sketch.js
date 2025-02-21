@@ -20,7 +20,15 @@ function setup(){
         chartPosX: 50,
         chartPosY: 350
         }
-    ))
+    ));
+
+    charts.push(new HorizontalChart({
+        data: cleanedData,
+        xValue: 'Year',
+        yValue: 'ItalyPop',
+        chartPosX: 400,
+        chartPosY: 350
+    }));
 
     //charts.push(new StackedBarChart({
         //data: cleanedData,
