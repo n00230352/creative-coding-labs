@@ -1,4 +1,4 @@
-class HorizontalChart {
+class LineChart {
     constructor(obj) {
         this.data = obj.data;
         this.xValue = obj.xValue;
@@ -10,10 +10,11 @@ class HorizontalChart {
 
         this.axisThickness = obj.axisThickness || 1;
         this.chartPosX = obj.chartPosX || 550;
-        this.chartPosY = obj.chartPosY || 350;
+        this.chartPosY = obj.chartPosY || 750;
 
-        this.gap = (this.chartHeight - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
-        this.scaler = this.chartWidth / (max(cleanedData.map(row => row[this.yValue]))); 
+        this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
+
+        this.scaler = this.chartHeight / (max(this.data.map(row => row[this.yValue])));
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
@@ -25,19 +26,27 @@ class HorizontalChart {
     }
 
     renderBars() {
-        push();
-            translate(this.chartPosX, this.chartPosY);
             push();
-            translate(0, -this.margin);
-            
+            translate(this.chartPosX, this.chartPosY);
+            translate(this.margin, 0);
+        
+            noFill();
+            stroke(this.barColor);
+            strokeWeight(2);
+        
+            beginShape();
             for (let i = 0; i < this.data.length; i++) {
-                let yPos = (this.barWidth + this.gap) * i; 
-                fill(this.barColor);
-                rect(0, -yPos, this.data[i][this.yValue] * this.scaler, this.barWidth);
+                let xPos = (this.barWidth + this.gap) * i;
+        
+                vertex(xPos, -this.data[i][this.yValue]*this.scaler); 
+                
+                stroke(255, 0, 0);
+                ellipse(xPos,-this.data[i][this.yValue]*this.scaler , 5, 5);
             }
-
+            endShape();
+        
             pop();
-        pop();
+        
     }
 
     renderAxis() {
@@ -46,26 +55,28 @@ class HorizontalChart {
         noFill();
         stroke(this.axisColour);
         strokeWeight(this.axisThickness);
-        line(0, 0, 0, -this.chartHeight); // Vertical axis
-        line(0, 0, this.chartWidth, 0); // Horizontal axis
+        line(0, 0, 0, -this.chartHeight); // Vertical line
+        line(0, 0, this.chartWidth, 0); // Horizontal line
         pop();
     }
 
     renderLabels() {
         push();
         translate(this.chartPosX, this.chartPosY);
+
         push();
         translate(this.margin, 0);
         for (let i = 0; i < this.data.length; i++) {
-            let yPos = (this.barWidth + this.gap) * i;
+            let xPos = (this.barWidth + this.gap) * i;
 
             fill(this.axisTextColour);
             noStroke();
-            textAlign(RIGHT, CENTER);
+            textAlign(LEFT, CENTER);
             textSize(12);
             push();
-            translate(this.data[i][this.yValue] * this.scaler + 5, -yPos + this.barWidth / 2); 
-            text(this.data[i][this.xValue], 0, 0); 
+            translate(xPos + this.barWidth / 2, 20);
+            rotate(45);
+            text(this.data[i][this.xValue], 0, 0);
             pop();
         }
         pop();
@@ -79,14 +90,15 @@ class HorizontalChart {
         stroke(this.axisColour);
         strokeWeight(this.axisThickness);
 
-        let tickIncrement = this.chartWidth / this.numTicks;
-        let tickValueIncrement = max(this.data.map(row => row[this.yValue])) / this.numTicks;
+        let tickIncrement = this.chartHeight / this.numTicks;
 
         fill(this.axisColour);
+        textSize(12);
+        textAlign(RIGHT, CENTER);
 
         for (let i = 0; i <= this.numTicks; i++) {
-            let x = tickIncrement * i;
-            line(x, 0, x, this.tickLength); 
+            let y = -tickIncrement * i;
+            line(0, y, -this.tickLength, y); 
         }
 
         pop();

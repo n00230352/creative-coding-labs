@@ -16,27 +16,31 @@ function setup(){
     charts.push(new BarChart({
         data:cleanedData,
         xValue:'Year',
-        yValue:'ItalyPop',
-        chartPosX: 50,
-        chartPosY: 350
+        yValue:'WorldPop',
         }
     ));
 
     charts.push(new HorizontalChart({
         data: cleanedData,
         xValue: 'Year',
-        yValue: 'ItalyPop',
-        chartPosX: 400,
-        chartPosY: 350
+        yValue: 'ItalyUrbanPop',
     }));
 
-    //charts.push(new StackedBarChart({
-        //data: cleanedData,
-        //xValue: 'Year',
-        //yValues: ['ItalyPop' , 'WorldPop'],
-        //chartPosX: 400,
-        //chartPosY: 350
-    //}));
+    // charts.push(new StackedBarChart({
+    //     data:cleanedData,
+    //     xValue:'Year',
+    //     yValue:'ItalyPop',
+    //     yValues: ['ItalyPop', 'WorldPop'],
+    //     }
+    // ));
+
+    charts.push(new LineChart({
+        data: cleanedData,
+        xValue: 'Year',
+        yValue: 'WorldPop',
+        chartPosX: 550,
+        chartPosY: 750
+    }));
 }
 
 
