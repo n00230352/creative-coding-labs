@@ -20,11 +20,11 @@ class StackedBarChart {
 
         this.scaler = this.chartHeight / (max(this.total));
 
-        //this.maxValue = max(this.data.map((x) => x[this.yValues]));
+        this.maxValues = max(this.data.map((x) => x[this.yValues[0]]));
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColors = [color(30, 60, 120), color(90, 60, 120)]
+        this.barColors = [color(66, 161, 245), color(66, 209, 245)]
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -100,19 +100,29 @@ class StackedBarChart {
         noFill();
         stroke(this.axisColour);
         strokeWeight(this.axisThickness);
-
-        let tickIncrement = this.chartHeight / this.numTicks;
-
         fill(this.axisColour);
+    
+        let tickIncrement = this.chartHeight / this.numTicks;
+    
         textSize(12);
         textAlign(RIGHT, CENTER);
-
+    
         for (let i = 0; i <= this.numTicks; i++) {
             let y = -tickIncrement * i;
-            line(0, y, -this.tickLength, y); 
-
+            line(0, y, -this.tickLength, y);  // Draw the tick lines
+    
+            let tickValue = (this.maxValues / this.numTicks) * i;
+            
+            // Adjust text position
+            textAlign(RIGHT, CENTER);  // Align text to the right of the tick line
+            push();
+            // Position text a little to the left of the tick line
+            translate(-this.tickLength - 5, y);  // Use 'y' directly for vertical positioning
+            noStroke();
+            text(tickValue, 0, 0);  // Render the tick value
+            pop();
         }
-
+    
         pop();
     }
 }

@@ -96,6 +96,7 @@ class HorizontalChart {
 		for (let i = 0; i <= this.numTicks; i++) {
 			let x = tickIncrement * i;
 			line(x, 0, x, this.tickLength);
+            
 
 			let tickValue = (this.maxValue / this.numTicks) * i;
 
