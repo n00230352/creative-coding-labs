@@ -16,9 +16,11 @@ class BarChart {
 
         this.scaler = this.chartHeight / (max(this.data.map(row => row[this.yValue])));
 
+        this.maxValue = max(this.data.map((x) => x[this.yValue]));
+
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColor = color(30, 60, 120);
+        this.barColor = color(255,0,0);
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -90,6 +92,9 @@ class BarChart {
         for (let i = 0; i <= this.numTicks; i++) {
             let y = -tickIncrement * i;
             line(0, y, -this.tickLength, y); 
+
+            let tickValue = (this.maxValue / this.numTicks) * i; 
+            text(tickValue, -this.tickLength - 5, y); 
         }
 
         pop();

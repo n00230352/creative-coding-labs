@@ -26,13 +26,12 @@ function setup(){
         yValue: 'ItalyUrbanPop',
     }));
 
-    // charts.push(new StackedBarChart({
-    //     data:cleanedData,
-    //     xValue:'Year',
-    //     yValue:'ItalyPop',
-    //     yValues: ['ItalyPop', 'WorldPop'],
-    //     }
-    // ));
+    charts.push(new StackedBarChart({
+        data:cleanedData,
+        xValue:'Year',
+        yValues: ['ItalyPop', 'WorldPop'],
+        }
+    ));
 
     charts.push(new LineChart({
         data: cleanedData,

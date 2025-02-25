@@ -6,18 +6,21 @@ class HorizontalChart {
         this.chartHeight = obj.chartHeight || 300;
         this.chartWidth = obj.chartWidth || 300;
         this.barWidth = obj.barWidth || 10;
-        this.margin = obj.margin || 10;
+        this.margin = obj.margin || 20;
 
         this.axisThickness = obj.axisThickness || 1;
         this.chartPosX = obj.chartPosX || 550;
         this.chartPosY = obj.chartPosY || 350;
 
         this.gap = (this.chartHeight - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
-        this.scaler = this.chartWidth / (max(cleanedData.map(row => row[this.yValue]))); 
+
+        this.scaler = this.chartWidth / (max(cleanedData.map(row => row[this.yValue])));
+        
+        this.maxValue = max(this.data.map((x) => x[this.yValue]));
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColor = color(30, 60, 120);
+        this.barColor = color(0,255,0);
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -55,7 +58,7 @@ class HorizontalChart {
         push();
         translate(this.chartPosX, this.chartPosY);
         push();
-        translate(this.margin, 0);
+        translate(-this.margin, +10);
         for (let i = 0; i < this.data.length; i++) {
             let yPos = (this.barWidth + this.gap) * i;
 
@@ -64,7 +67,7 @@ class HorizontalChart {
             textAlign(RIGHT, CENTER);
             textSize(12);
             push();
-            translate(this.data[i][this.yValue] * this.scaler + 5, -yPos + this.barWidth / 2); 
+            translate(0,-yPos-this.margin); 
             text(this.data[i][this.xValue], 0, 0); 
             pop();
         }
@@ -87,6 +90,9 @@ class HorizontalChart {
         for (let i = 0; i <= this.numTicks; i++) {
             let x = tickIncrement * i;
             line(x, 0, x, this.tickLength); 
+
+            let tickValue = (this.maxValue / this.numTicks) * i; 
+            text(tickValue, x, 25);
         }
 
         pop();

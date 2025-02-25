@@ -2,8 +2,7 @@ class StackedBarChart {
     constructor(obj) {
         this.data = obj.data;
         this.xValue = obj.xValue;
-       // this.yValue = obj.yValue;
-        this.yValueTotal= "WorldPop"
+        this.yValues = obj.yValues;
         this.chartHeight = obj.chartHeight || 300;
         this.chartWidth = obj.chartWidth || 300;
         this.barWidth = obj.barWidth || 10;
@@ -17,6 +16,8 @@ class StackedBarChart {
 
         this.scaler = this.chartHeight / (max(this.data.map(row => row[this.yValueTotal])));
 
+        this.maxValue = max(this.data.map((x) => x[this.yValues]));
+
         this.axisColour = color(50);
         this.axisTickColour = color(100);
         this.barColor = color(30, 60, 120);
@@ -29,37 +30,26 @@ class StackedBarChart {
     }
 
     renderBars() {
-        push(); // Saves the current drawing.
-    translate(this.chartPosX, this.chartPosY); // Translates the origin to the chart's position.
- 
-    push(); // Saves the drawing state again for a nested transformation.
-    translate(this.margin, 0); // Adds margin to the left of the chart for positioning the bars.
- 
-    for (let i = 0; i < this.data.length; i++) {
-      let xPos = (this.barWidth + this.gap) * i;
- 
-      push();
-      translate(xPos, 0);
- 
-      push();
-      // two values in y axis, male and female
-      // so loop twice
-      // each iteration draw a rectangle and we'll give it a different colour, otherwise won't see them
-      for (let j = 0; j < this.yValues.length; j++) {
-        fill(this.barColours[j]);
-        noStroke();
- 
-        rect(0, 0, this.barWidth, -this.data[i][this.yValues[j]] * this.scaler);
-        translate(0, -this.data[i][this.yValues[j]] * this.scaler - 1);
-      }
- 
-      pop();
-      pop();
+        // push(); 
+        // translate(this.chartPosX, this.chartPosY);
+        // for (let i = 0; i < this.data.length; i++) {
+        //     let xPos = (this.barWidth + this.gap) * i;
+        //     push(); 
+        //     translate(xPos, 0); 
+    
+        //     for (let j = 0; j < this.yValues.length; j++) {
+        //         fill(this.barColours[j]);
+        //         noStroke();
+    
+        //         rect(0, 0, this.barWidth, -this.data[i][this.yValues[j]] * this.scaler);
+        //         translate(0, -this.data[i][this.yValues[j]] * this.scaler - 1);
+        //     }
+    
+        //     pop();
+        // }
+        // pop();
     }
- 
-    pop(); // Restores the drawing state after rendering the bars.
-    pop(); // Restores the original drawing state after positioning the chart.
-    }
+    
 
     renderAxis() {
         push();
@@ -111,6 +101,7 @@ class StackedBarChart {
         for (let i = 0; i <= this.numTicks; i++) {
             let y = -tickIncrement * i;
             line(0, y, -this.tickLength, y); 
+
         }
 
         pop();
