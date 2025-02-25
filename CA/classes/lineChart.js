@@ -42,7 +42,7 @@ class LineChart {
         
                 vertex(xPos, -this.data[i][this.yValue]*this.scaler); 
                 
-                stroke(255, 0, 0);
+                stroke(51, 153, 255);
                 ellipse(xPos,-this.data[i][this.yValue]*this.scaler , 5, 5);
             }
             endShape();
@@ -95,6 +95,7 @@ class LineChart {
         let tickIncrement = this.chartHeight / this.numTicks;
 
         fill(this.axisColour);
+        noStroke()
         textSize(12);
         textAlign(RIGHT, CENTER);
 

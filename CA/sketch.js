@@ -29,7 +29,7 @@ function setup(){
     charts.push(new StackedBarChart({
         data:cleanedData,
         xValue:'Year',
-        yValues: ['ItalyPop', 'WorldPop'],
+        yValues: ['ItalyPop', 'ItalyUrbanPop'],
         }
     ));
 
@@ -37,8 +37,6 @@ function setup(){
         data: cleanedData,
         xValue: 'Year',
         yValue: 'WorldPop',
-        chartPosX: 550,
-        chartPosY: 750
     }));
 }
 

@@ -20,7 +20,7 @@ class BarChart {
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColor = color(255,0,0);
+        this.barColor = color(0, 102, 204);
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -86,6 +86,7 @@ class BarChart {
         let tickIncrement = this.chartHeight / this.numTicks;
 
         fill(this.axisColour);
+        noStroke()
         textSize(12);
         textAlign(RIGHT, CENTER);
 

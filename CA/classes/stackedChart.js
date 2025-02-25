@@ -14,13 +14,17 @@ class StackedBarChart {
 
         this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
 
-        this.scaler = this.chartHeight / (max(this.data.map(row => row[this.yValueTotal])));
+        this.total = this.data.map((row) => {
+            return row['ItalyPop'] + row['ItalyUrbanPop']
+        })
 
-        this.maxValue = max(this.data.map((x) => x[this.yValues]));
+        this.scaler = this.chartHeight / (max(this.total));
+
+        //this.maxValue = max(this.data.map((x) => x[this.yValues]));
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColor = color(30, 60, 120);
+        this.barColors = [color(30, 60, 120), color(90, 60, 120)]
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -30,24 +34,29 @@ class StackedBarChart {
     }
 
     renderBars() {
-        // push(); 
-        // translate(this.chartPosX, this.chartPosY);
-        // for (let i = 0; i < this.data.length; i++) {
-        //     let xPos = (this.barWidth + this.gap) * i;
-        //     push(); 
-        //     translate(xPos, 0); 
+        push(); 
+        translate(this.chartPosX, this.chartPosY);
+        push()
+        translate(this.margin, 0)
+
+        
+        for (let i = 0; i < this.data.length; i++) {
+            let xPos = (this.barWidth + this.gap) * i;
+            push(); 
+            translate(xPos, 0); 
     
-        //     for (let j = 0; j < this.yValues.length; j++) {
-        //         fill(this.barColours[j]);
-        //         noStroke();
+            for (let j = 0; j < this.yValues.length; j++) {
+                fill(this.barColors[j]);
+                noStroke();
     
-        //         rect(0, 0, this.barWidth, -this.data[i][this.yValues[j]] * this.scaler);
-        //         translate(0, -this.data[i][this.yValues[j]] * this.scaler - 1);
-        //     }
+                rect(0, 0, this.barWidth, -this.data[i][this.yValues[j]] * this.scaler);
+                translate(0, -this.data[i][this.yValues[j]] * this.scaler - 1);
+            }
     
-        //     pop();
-        // }
-        // pop();
+            pop();
+        }
+        pop();
+        pop()
     }
     
 
