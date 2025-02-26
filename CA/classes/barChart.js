@@ -1,16 +1,19 @@
 class BarChart {
     constructor(obj) {
         this.data = obj.data;
+        this.title = obj.title  || "World population barchart";
+        this.xAxisLabel = obj.xAxisLabel || "Years";
+        this.yAxisLabel = obj.yAxisLabel || "Millions";
         this.xValue = obj.xValue;
         this.yValue = obj.yValue;
-        this.chartHeight = obj.chartHeight || 300;
-        this.chartWidth = obj.chartWidth || 300;
-        this.barWidth = obj.barWidth || 10;
+        this.chartHeight = obj.chartHeight || 400;
+        this.chartWidth = obj.chartWidth || 450;
+        this.barWidth = obj.barWidth || 15;
         this.margin = obj.margin || 10;
 
-        this.axisThickness = obj.axisThickness || 1;
-        this.chartPosX = obj.chartPosX || 150;
-        this.chartPosY = obj.chartPosY || 350;
+        this.axisThickness = obj.axisThickness || 3;
+        this.chartPosX = obj.chartPosX || 140;
+        this.chartPosY = obj.chartPosY || 470;
 
         this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
 
@@ -20,11 +23,22 @@ class BarChart {
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColor = color(0, 102, 204);
+        this.barColor = color( 60, 179, 113);
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
         this.tickLength = 10;
+    }
+
+    renderTitle(){
+        push()
+        translate(this.chartPosX, this.chartPosY - this.chartHeight - 20)
+        fill(this.axisTextColour);
+        textSize(20);
+        textAlign(CENTER, LEFT);
+        
+        text(this.title, 230, 0); // Render the chart title
+        pop();
     }
 
     renderBars() {
@@ -50,6 +64,20 @@ class BarChart {
         strokeWeight(this.axisThickness);
         line(0, 0, 0, -this.chartHeight); // Vertical line
         line(0, 0, this.chartWidth, 0); // Horizontal line
+
+        fill(this.axisTextColour);
+        textSize(15);
+        textAlign(CENTER, CENTER);
+       
+        // X-axis label (centered)
+        noStroke()
+        text(this.xAxisLabel, this.chartWidth / 2, 100);
+       
+        // Y-axis label (centered vertically)
+        push();
+        rotate(-90)
+        text(this.yAxisLabel, this.chartHeight / 2, -100); // Rotate to place Y-axis label vertically
+        pop();
         pop();
     }
 

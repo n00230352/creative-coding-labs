@@ -8,7 +8,7 @@ function preload(){
 }
 
 function setup(){
-    createCanvas(1000, 2000);
+    createCanvas(4000, 2000);
     angleMode(DEGREES);
     noLoop();
     cleanData();
@@ -39,23 +39,17 @@ function setup(){
         yValue: 'WorldPop',
     }));
 
-    // charts.push(new clusterChart({
-    //     data:cleanedData,
-    //     xValue:'Year',
-    //     yValues: ['ItalyPop', 'ItalyUrbanPop'],
-    //     }
-    // ));
+    charts.push(new clusterChart({
+        data:cleanedData,
+        xValue:'Year',
+        yValues: ['ItalyPop', 'ItalyUrbanPop'],
+        }
+    ));
 
-    charts.push(new LineChart1({
-        data: cleanedData,
-        xValue: 'Year',
-        yValues: ['ItalyPop', 'ItalyUrbanPop', 'WorldPop'],
-    }));
-
-    //  charts.push(new PieChart({
-    //      data: cleanedData,
-    //      xValue: 'Year',
-    //      yValue: 'WorldPop',
+    // charts.push(new LineChart1({
+    //     data: cleanedData,
+    //     xValue: 'Year',
+    //     yValues: ['ItalyPop', 'ItalyUrbanPop', 'WorldPop'],
     // }));
 }
 
@@ -68,6 +62,7 @@ function draw(){
         chart.renderLabels();
         chart.renderAxis();
         chart.renderTicks();
+        chart.renderTitle();
     });
 }
 

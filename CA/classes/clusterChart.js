@@ -1,16 +1,17 @@
 class clusterChart {
     constructor(obj) {
         this.data = obj.data;
+        this.title = obj.title || "aaaa";
         this.xValue = obj.xValue;
         this.yValues = obj.yValues;
-        this.chartHeight = obj.chartHeight || 300;
-        this.chartWidth = obj.chartWidth || 600;
+        this.chartHeight = obj.chartHeight || 400;
+        this.chartWidth = obj.chartWidth || 450;
         this.barWidth = obj.barWidth || 10;
         this.margin = obj.margin || 10;
 
-        this.axisThickness = obj.axisThickness || 1;
-        this.chartPosX = obj.chartPosX || 150;
-        this.chartPosY = obj.chartPosY || 1150;
+        this.axisThickness = obj.axisThickness || 3;
+        this.chartPosX = obj.chartPosX || 800;
+        this.chartPosY = obj.chartPosY || 1100;
 
         this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
 
@@ -24,13 +25,24 @@ class clusterChart {
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColors = [color(66, 161, 245), color(66, 209, 245)]
+        this.barColors = [color(65, 105, 225), color(30, 144, 255)]
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
         this.tickLength = 10;
 
         this.yValues=obj.yValues
+    }
+
+    renderTitle(){
+        push()
+        translate(this.chartPosX, this.chartPosY - this.chartHeight - 20)
+        fill(this.axisTextColour);
+        textSize(20);
+        textAlign(CENTER, LEFT);
+        
+        text(this.title, 230, 0); // Render the chart title
+        pop();
     }
 
     renderBars() {
@@ -52,7 +64,8 @@ class clusterChart {
                 noStroke();
                 
                 // Draw the bar, scaling its height based on the data value
-                rect(0, 0, this.barWidth, -this.data[i][this.yValues[j]] * this.scaler);
+                let barHeight = map(this.data[i][this.yValues[j]], 0, this.maxValues, 0, this.chartHeight);
+                rect(0, 0, this.barWidth, -barHeight);
                 
                 pop();
             }
