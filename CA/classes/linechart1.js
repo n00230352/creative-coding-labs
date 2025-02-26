@@ -3,8 +3,8 @@ class LineChart1 {
         this.data = obj.data;
         this.xValue = obj.xValue;
         this.yValues = obj.yValues;
-        this.chartHeight = obj.chartHeight || 300;
-        this.chartWidth = obj.chartWidth || 300;
+        this.chartHeight = obj.chartHeight || 400;
+        this.chartWidth = obj.chartWidth || 450;
         this.barWidth = obj.barWidth || 10;
         this.margin = obj.margin || 10;
 
@@ -12,9 +12,9 @@ class LineChart1 {
             return row['ItalyPop'] + row['ItalyUrbanPop'] + row['WorldPop']
         })
 
-        this.axisThickness = obj.axisThickness || 1;
-        this.chartPosX = obj.chartPosX || 550;
-        this.chartPosY = obj.chartPosY || 1500;
+        this.axisThickness = obj.axisThickness || 3;
+        this.chartPosX = obj.chartPosX || 1500;
+        this.chartPosY = obj.chartPosY || 1100;;
 
         this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
 
@@ -36,11 +36,11 @@ class LineChart1 {
         translate(this.chartPosX, this.chartPosY);
         
         let colors = [
-            { fill: color(51, 153, 255, 100), stroke: color(51, 153, 255) },
-            { fill: color(255, 0, 0, 100), stroke: color(255, 0, 0) },
-            { fill: color(0, 255, 0, 100), stroke: color(0, 255, 0) }
+            { fill: color(70, 130, 180, 100), stroke: color(70, 130, 180) },  // Steel Blue
+            { fill: color(100, 149, 237, 100), stroke: color(100, 149, 237) }, // Cornflower Blue
+            { fill: color(30, 144, 255, 100), stroke: color(30, 144, 255) }   // Dodger Blue
         ];
-    
+        
         for (let j = 0; j < this.yValues.length; j++) {
             let scaler = this.scalers[j];
     
@@ -117,35 +117,32 @@ class LineChart1 {
         stroke(this.axisColour);
         strokeWeight(this.axisThickness);
         fill(this.axisColour);
-     
-        // Find the max Y value from the data dynamically
-        max(this.maxValues);
-        for (let i = 0; i < this.data.length; i++) {
-            if (this.data[i][this.yvalueTotal] > this.maxValue) {
-                this.maxValue = this.data[i][this.yvalueTotal];
-            }
-        }
-     
-        let tickIncrement = this.maxValue / this.numTicks;
-        let pixelIncrement = this.chartHeight / this.numTicks;
-     
-        textSize(12);
+    
+        // Find the max Y value correctly
+        this.maxValue = max(this.maxValues);  // 
+    
+        let tickIncrement = this.maxValue / this.numTicks; //calculates the gap between tick marks on the y-axis
+        let pixelIncrement = this.chartHeight / this.numTicks; //calculates the spacing between tick marks
+    
+        textSize(15);
         textAlign(RIGHT, CENTER);
-     
+    
         for (let i = 0; i <= this.numTicks; i++) {
             let yPos = -pixelIncrement * i;
             let tickValue = tickIncrement * i;
-     
+    
             // Draw tick lines
             line(0, yPos, -this.tickLength, yPos);
-     
+    
             // Draw tick values
             push();
             noStroke();
             text(tickValue.toFixed(0), -this.tickLength - 5, yPos);
             pop();
         }
-     
+    
         pop();
     }
+    
+    
 }

@@ -46,11 +46,11 @@ function setup(){
         }
     ));
 
-    // charts.push(new LineChart1({
-    //     data: cleanedData,
-    //     xValue: 'Year',
-    //     yValues: ['ItalyPop', 'ItalyUrbanPop', 'WorldPop'],
-    // }));
+    charts.push(new LineChart1({
+        data: cleanedData,
+        xValue: 'Year',
+        yValues: ['ItalyPop', 'ItalyUrbanPop', 'WorldPop'],
+    }));
 }
 
 
