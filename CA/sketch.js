@@ -1,12 +1,13 @@
 let data; 
 let cleanedData = [];
 let charts = [];
+let font;
 
 
 function preload(){
     data = loadTable('data/population.csv', 'csv', 'header')
-    // font = loadFont('./Roboto/roboto.ttf')
-    // console.log(font);
+    font = loadFont('Roboto/Roboto.ttf');
+    console.log(font);
 }
 
 function setup(){
@@ -57,7 +58,8 @@ function setup(){
 
 
 function draw(){
-    background(245, 235, 220);
+
+    background(255);
 
     charts.forEach(chart => {
         chart.renderBars();

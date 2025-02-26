@@ -35,7 +35,7 @@ class BarChart {
         translate(this.chartPosX, this.chartPosY - this.chartHeight - 50)
         fill(this.axisTextColour);
 
-        //textFont(font)
+       // textFont(font)
         textSize(20);
         textAlign(CENTER, LEFT);
         

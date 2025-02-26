@@ -27,7 +27,7 @@ class LineChart1 {
             max(this.data.map(row => row[yValue])))
 
         this.axisColour = color(50);
-        this.axisTickColour = color(100);
+        // this.axisTickColour = color(100);
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -58,19 +58,19 @@ class LineChart1 {
         ];
         
         for (let j = 0; j < this.yValues.length; j++) {
-            let scaler = this.scalers[j];
+            let scaler = this.scalers[j]; //loop through the y values
     
             // Draw filled area under the line
             noStroke();
             fill(colors[j].fill);
-            beginShape();
+            beginShape(); //defines the filling area
             vertex(0, 0);
             for (let i = 0; i < this.data.length; i++) {
-                vertex((this.barWidth + this.gap) * i, -this.data[i][this.yValues[j]] * scaler);
+                vertex((this.barWidth + this.gap) * i, -this.data[i][this.yValues[j]] * scaler);  //The for loop goes through each data point on the canvas to create a shape.
             }
-            vertex((this.barWidth + this.gap) * (this.data.length - 1), 0);
-            vertex(0, 0);
-            endShape(CLOSE);
+            vertex((this.barWidth + this.gap) * (this.data.length - 1), 0); //touches the x axis 
+            vertex(0, 0); //the pottom of the shapes
+            endShape(CLOSE); // closes the shape
     
             // Draw line chart
             noFill();
@@ -78,7 +78,7 @@ class LineChart1 {
             strokeWeight(2);
             beginShape();
             for (let i = 0; i < this.data.length; i++) {
-                vertex((this.barWidth + this.gap) * i, -this.data[i][this.yValues[j]] * scaler);
+                vertex((this.barWidth + this.gap) * i, -this.data[i][this.yValues[j]] * scaler); //Loops through each data point and adds a dot to connect them.
             }
             endShape();
     
@@ -86,7 +86,7 @@ class LineChart1 {
             fill(colors[j].stroke);
             noStroke();
             for (let i = 0; i < this.data.length; i++) {
-                ellipse((this.barWidth + this.gap) * i, -this.data[i][this.yValues[j]] * scaler, 5, 5);
+                ellipse((this.barWidth + this.gap) * i, -this.data[i][this.yValues[j]] * scaler, 5, 5);  //The loop draws circle for each data point, using colors and positions based on the y values.
             }
         }
         pop();
@@ -104,11 +104,9 @@ class LineChart1 {
         fill(this.axisTextColour);
         textSize(15);
         textAlign(CENTER, CENTER);
-       
         // X-axis label (centered)
         noStroke()
         text(this.xAxisLabel, this.chartWidth / 2, 100);
-       
         // Y-axis label (centered vertically)
         push();
         rotate(-90)

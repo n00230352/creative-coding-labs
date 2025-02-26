@@ -47,17 +47,6 @@ class StackedBarChart {
         pop();
     }
 
-    renderTitle(){
-        push()
-        translate(this.chartPosX, this.chartPosY - this.chartHeight - 20)
-        fill(this.axisTextColour);
-        textSize(20);
-        textAlign(CENTER, LEFT);
-        
-        text(this.title, 230, 0); // Render the chart title
-        pop();
-    }
-
     renderBars() {
         push(); 
         translate(this.chartPosX, this.chartPosY);
