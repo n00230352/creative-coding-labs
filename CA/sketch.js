@@ -5,6 +5,8 @@ let charts = [];
 
 function preload(){
     data = loadTable('data/population.csv', 'csv', 'header')
+    // font = loadFont('./Roboto/roboto.ttf')
+    // console.log(font);
 }
 
 function setup(){

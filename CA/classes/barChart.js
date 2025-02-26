@@ -23,7 +23,7 @@ class BarChart {
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColor = color(65, 105, 225);
+        this.barColor = color( 65, 105, 225);
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -34,6 +34,8 @@ class BarChart {
         push()
         translate(this.chartPosX, this.chartPosY - this.chartHeight - 50)
         fill(this.axisTextColour);
+
+        //textFont(font)
         textSize(20);
         textAlign(CENTER, LEFT);
         
