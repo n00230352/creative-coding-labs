@@ -1,7 +1,7 @@
 class HorizontalChart {
 	constructor(obj) {
 		this.data = obj.data;
-		this.title = obj.title  || "World population horizontal chart";
+		this.title = obj.title  || "Italy population horizontal chart";
         this.xAxisLabel = obj.xAxisLabel || "Millions";
         this.yAxisLabel = obj.yAxisLabel || "Years";
 		this.xValue = obj.xValue;
@@ -13,7 +13,7 @@ class HorizontalChart {
 
 		this.axisThickness = obj.axisThickness || 3;
 		this.chartPosX = obj.chartPosX || 800;
-		this.chartPosY = obj.chartPosY || 470;
+		this.chartPosY = obj.chartPosY || 490;
 
 		this.gap =
 			(this.chartHeight - this.data.length * this.barWidth - this.margin * 2) /
@@ -26,7 +26,7 @@ class HorizontalChart {
 
 		this.axisColour = color(50);
 		this.axisTickColour = color(100);
-		this.barColor = color(0, 0, 205);
+		this.barColor = color(65, 105, 225);
 		this.axisTextColour = color(0);
 
 		this.numTicks = 5;
@@ -35,7 +35,7 @@ class HorizontalChart {
 
 	renderTitle(){
         push()
-        translate(this.chartPosX, this.chartPosY - this.chartHeight - 20)
+        translate(this.chartPosX, this.chartPosY - this.chartHeight - 50)
         fill(this.axisTextColour);
         textSize(20);
         textAlign(CENTER, CENTER);
@@ -98,7 +98,7 @@ class HorizontalChart {
 			fill(this.axisTextColour);
 			noStroke();
 			textAlign(RIGHT, CENTER);
-			textSize(12);
+			textSize(15);
 			push();
 			translate(0, -yPos - this.margin);
 			text(this.data[i][this.xValue], 0, 0);

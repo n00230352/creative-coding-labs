@@ -1,7 +1,7 @@
 class StackedBarChart {
     constructor(obj) {
         this.data = obj.data;
-        this.title = obj.title  || "stacked bar chart";
+        this.title = obj.title  || "Urban - italy population stacked bar chart";
         this.xAxisLabel = obj.xAxisLabel || "Years";
         this.yAxisLabel = obj.yAxisLabel || "Millions";
         this.xValue = obj.xValue;
@@ -13,7 +13,7 @@ class StackedBarChart {
 
         this.axisThickness = obj.axisThickness || 3;
         this.chartPosX = obj.chartPosX || 1500;
-        this.chartPosY = obj.chartPosY || 470;
+        this.chartPosY = obj.chartPosY || 490;
 
         this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
 
@@ -38,7 +38,7 @@ class StackedBarChart {
 
     renderTitle(){
         push()
-        translate(this.chartPosX, this.chartPosY - this.chartHeight - 20)
+        translate(this.chartPosX, this.chartPosY - this.chartHeight - 50)
         fill(this.axisTextColour);
         textSize(20);
         textAlign(CENTER, LEFT);
@@ -119,7 +119,7 @@ class StackedBarChart {
             fill(this.axisTextColour);
             noStroke();
             textAlign(LEFT, CENTER);
-            textSize(12);
+            textSize(15);
             push();
             translate(xPos + this.barWidth / 2, 20);
             rotate(45);
@@ -140,7 +140,7 @@ class StackedBarChart {
     
         let tickIncrement = this.chartHeight / this.numTicks;
     
-        textSize(12);
+        textSize(15);
         textAlign(RIGHT, CENTER);
     
         for (let i = 0; i <= this.numTicks; i++) {
@@ -149,7 +149,6 @@ class StackedBarChart {
     
             let tickValue = (this.maxValues / this.numTicks) * i;
             
-            // Adjust text position
             textAlign(RIGHT, CENTER);  // Align text to the right of the tick line
             push();
             // Position text a little to the left of the tick line

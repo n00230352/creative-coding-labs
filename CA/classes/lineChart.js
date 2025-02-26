@@ -1,7 +1,7 @@
 class LineChart {
     constructor(obj) {
         this.data = obj.data;
-        this.title = obj.title  || "World population barchart";
+        this.title = obj.title  || "Italy non urban population line chart";
         this.xAxisLabel = obj.xAxisLabel || "Years";
         this.yAxisLabel = obj.yAxisLabel || "Millions";
         this.xValue = obj.xValue;
@@ -23,7 +23,7 @@ class LineChart {
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColor = color(135, 206, 235);
+        this.barColor = color(100, 149, 237);
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -32,7 +32,7 @@ class LineChart {
 
     renderTitle(){
         push()
-        translate(this.chartPosX, this.chartPosY - this.chartHeight - 20)
+        translate(this.chartPosX, this.chartPosY - this.chartHeight - 50)
         fill(this.axisTextColour);
         textSize(20);
         textAlign(CENTER, LEFT);
@@ -56,7 +56,7 @@ class LineChart {
         
                 vertex(xPos, -this.data[i][this.yValue]*this.scaler); 
                 
-                stroke(0, 0, 205);
+                stroke(100, 149, 237);
                 strokeWeight(5)
                 ellipse(xPos,-this.data[i][this.yValue]*this.scaler , 5, 5);
             }
@@ -104,7 +104,7 @@ class LineChart {
             fill(this.axisTextColour);
             noStroke();
             textAlign(LEFT, CENTER);
-            textSize(12);
+            textSize(15);
             push();
             translate(xPos + this.barWidth / 2, 20);
             rotate(45);
@@ -125,7 +125,7 @@ class LineChart {
     
         let tickIncrement = this.chartHeight / this.numTicks;
     
-        textSize(12);
+        textSize(15);
         textAlign(RIGHT, CENTER);
     
         for (let i = 0; i <= this.numTicks; i++) {

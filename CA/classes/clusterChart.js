@@ -1,7 +1,9 @@
 class clusterChart {
     constructor(obj) {
         this.data = obj.data;
-        this.title = obj.title || "aaaa";
+        this.title = obj.title || "Non urban - urban population of italy cluster chart";
+        this.xAxisLabel = obj.xAxisLabel || "Years";
+        this.yAxisLabel = obj.yAxisLabel || "Millions";
         this.xValue = obj.xValue;
         this.yValues = obj.yValues;
         this.chartHeight = obj.chartHeight || 400;
@@ -16,7 +18,7 @@ class clusterChart {
         this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
 
         this.total = this.data.map((row) => {
-            return row['ItalyPop'] + row['ItalyUrbanPop']
+            return row['NonUrbanPop'] + row['ItalyUrbanPop']
         })
 
         this.scaler = this.chartHeight / (max(this.total));
@@ -25,7 +27,7 @@ class clusterChart {
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColors = [color(65, 105, 225), color(30, 144, 255)]
+        this.barColors = [color(100, 149, 237), color(color(65, 105, 225))]
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -36,7 +38,7 @@ class clusterChart {
 
     renderTitle(){
         push()
-        translate(this.chartPosX, this.chartPosY - this.chartHeight - 20)
+        translate(this.chartPosX, this.chartPosY - this.chartHeight - 50)
         fill(this.axisTextColour);
         textSize(20);
         textAlign(CENTER, LEFT);
@@ -86,6 +88,20 @@ class clusterChart {
         strokeWeight(this.axisThickness);
         line(0, 0, 0, -this.chartHeight); // Vertical line
         line(0, 0, this.chartWidth, 0); // Horizontal line
+
+        fill(this.axisTextColour);
+        textSize(15);
+        textAlign(CENTER, CENTER);
+       
+        // X-axis label (centered)
+        noStroke()
+        text(this.xAxisLabel, this.chartWidth / 2, 100);
+       
+        // Y-axis label (centered vertically)
+        push();
+        rotate(-90)
+        text(this.yAxisLabel, this.chartHeight / 2, -100); // Rotate to place Y-axis label vertically
+        pop();
         pop();
     }
 
@@ -101,7 +117,7 @@ class clusterChart {
             fill(this.axisTextColour);
             noStroke();
             textAlign(LEFT, CENTER);
-            textSize(12);
+            textSize(15);
             push();
             translate(xPos + this.barWidth / 2, 20);
             rotate(45);
@@ -122,7 +138,7 @@ class clusterChart {
     
         let tickIncrement = this.chartHeight / this.numTicks;
     
-        textSize(12);
+        textSize(15);
         textAlign(RIGHT, CENTER);
     
         for (let i = 0; i <= this.numTicks; i++) {

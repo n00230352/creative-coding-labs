@@ -8,7 +8,7 @@ function preload(){
 }
 
 function setup(){
-    createCanvas(4000, 2000);
+    createCanvas(2000, 1500);
     angleMode(DEGREES);
     noLoop();
     cleanData();
@@ -16,14 +16,14 @@ function setup(){
     charts.push(new BarChart({
         data:cleanedData,
         xValue:'Year',
-        yValue:'WorldPop',
+        yValue:'ItalyPop',
         }
     ));
 
     charts.push(new HorizontalChart({
         data: cleanedData,
         xValue: 'Year',
-        yValue: 'ItalyUrbanPop',
+        yValue: 'ItalyPop',
     }));
 
     charts.push(new StackedBarChart({
@@ -36,20 +36,20 @@ function setup(){
     charts.push(new LineChart({
         data: cleanedData,
         xValue: 'Year',
-        yValue: 'WorldPop',
+        yValue: 'NonUrbanPop',
     }));
 
     charts.push(new clusterChart({
         data:cleanedData,
         xValue:'Year',
-        yValues: ['ItalyPop', 'ItalyUrbanPop'],
+        yValues: [ 'ItalyUrbanPop','NonUrbanPop'],
         }
     ));
 
     charts.push(new LineChart1({
         data: cleanedData,
         xValue: 'Year',
-        yValues: ['ItalyPop', 'ItalyUrbanPop', 'WorldPop'],
+        yValues: ['ItalyPop', 'ItalyUrbanPop', 'NonUrbanPop', 'WorldPop'],
     }));
 }
 

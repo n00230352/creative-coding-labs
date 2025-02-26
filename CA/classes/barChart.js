@@ -1,7 +1,7 @@
 class BarChart {
     constructor(obj) {
         this.data = obj.data;
-        this.title = obj.title  || "World population barchart";
+        this.title = obj.title  || "Italy population barchart";
         this.xAxisLabel = obj.xAxisLabel || "Years";
         this.yAxisLabel = obj.yAxisLabel || "Millions";
         this.xValue = obj.xValue;
@@ -13,7 +13,7 @@ class BarChart {
 
         this.axisThickness = obj.axisThickness || 3;
         this.chartPosX = obj.chartPosX || 140;
-        this.chartPosY = obj.chartPosY || 470;
+        this.chartPosY = obj.chartPosY || 490;
 
         this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
 
@@ -23,7 +23,7 @@ class BarChart {
 
         this.axisColour = color(50);
         this.axisTickColour = color(100);
-        this.barColor = color( 60, 179, 113);
+        this.barColor = color(65, 105, 225);
         this.axisTextColour = color(0);
 
         this.numTicks = 5;
@@ -32,7 +32,7 @@ class BarChart {
 
     renderTitle(){
         push()
-        translate(this.chartPosX, this.chartPosY - this.chartHeight - 20)
+        translate(this.chartPosX, this.chartPosY - this.chartHeight - 50)
         fill(this.axisTextColour);
         textSize(20);
         textAlign(CENTER, LEFT);
@@ -93,7 +93,7 @@ class BarChart {
             fill(this.axisTextColour);
             noStroke();
             textAlign(LEFT, CENTER);
-            textSize(12);
+            textSize(15);
             push();
             translate(xPos + this.barWidth / 2, 20);
             rotate(45);
@@ -114,7 +114,7 @@ class BarChart {
     
         let tickIncrement = this.chartHeight / this.numTicks;
     
-        textSize(12);
+        textSize(15);
         textAlign(RIGHT, CENTER);
     
         for (let i = 0; i <= this.numTicks; i++) {

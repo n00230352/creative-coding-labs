@@ -1,6 +1,9 @@
 class LineChart1 {
     constructor(obj) {
         this.data = obj.data;
+        this.title = obj.title  || "Personalized chart";
+        this.xAxisLabel = obj.xAxisLabel || "Millions";
+        this.yAxisLabel = obj.yAxisLabel || "Years";
         this.xValue = obj.xValue;
         this.yValues = obj.yValues;
         this.chartHeight = obj.chartHeight || 400;
@@ -9,7 +12,7 @@ class LineChart1 {
         this.margin = obj.margin || 10;
 
         this.total = this.data.map((row) => {
-            return row['ItalyPop'] + row['ItalyUrbanPop'] + row['WorldPop']
+            return row['ItalyPop'] + row['ItalyUrbanPop'] + row['NonUrbanPop']  + row['WorldPop']
         })
 
         this.axisThickness = obj.axisThickness || 3;
@@ -31,14 +34,27 @@ class LineChart1 {
         this.tickLength = 10;
     }
 
+    renderTitle(){
+        push()
+        translate(this.chartPosX, this.chartPosY - this.chartHeight - 50)
+        fill(this.axisTextColour);
+        textSize(20);
+        textAlign(CENTER, LEFT);
+        
+        text(this.title, 230, 0); // Render the chart title
+        pop();
+    }
+
     renderBars() {
         push();
         translate(this.chartPosX, this.chartPosY);
         
         let colors = [
-            { fill: color(70, 130, 180, 100), stroke: color(70, 130, 180) },  // Steel Blue
-            { fill: color(100, 149, 237, 100), stroke: color(100, 149, 237) }, // Cornflower Blue
-            { fill: color(30, 144, 255, 100), stroke: color(30, 144, 255) }   // Dodger Blue
+            { fill: color(0, 0, 255, 100), stroke: color(65, 105, 255) },
+            { fill: color(65, 105, 225, 100), stroke: color(65, 105, 225) },
+            { fill: color(100, 149, 237, 100), stroke: color(30, 144, 255) }, 
+            { fill: color(240, 128, 128, 100), stroke: color(240, 128, 128) }
+            
         ];
         
         for (let j = 0; j < this.yValues.length; j++) {
@@ -84,6 +100,20 @@ class LineChart1 {
         strokeWeight(this.axisThickness);
         line(0, 0, 0, -this.chartHeight); // Vertical line
         line(0, 0, this.chartWidth, 0); // Horizontal line
+
+        fill(this.axisTextColour);
+        textSize(15);
+        textAlign(CENTER, CENTER);
+       
+        // X-axis label (centered)
+        noStroke()
+        text(this.xAxisLabel, this.chartWidth / 2, 100);
+       
+        // Y-axis label (centered vertically)
+        push();
+        rotate(-90)
+        text(this.yAxisLabel, this.chartHeight / 2, -100); // Rotate to place Y-axis label vertically
+        pop();
         pop();
     }
 
@@ -99,7 +129,7 @@ class LineChart1 {
             fill(this.axisTextColour);
             noStroke();
             textAlign(LEFT, CENTER);
-            textSize(12);
+            textSize(15);
             push();
             translate(xPos + this.barWidth / 2, 20);
             rotate(45);
